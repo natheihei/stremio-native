@@ -5554,6 +5554,7 @@ dependencies = [
 [[package]]
 name = "libtorrent-sys"
 version = "0.1.8"
+source = "git+https://github.com/natheihei/stream-server.git?rev=b312338d77e8964c7ef8d040ada565d3f7de28f1#b312338d77e8964c7ef8d040ada565d3f7de28f1"
 dependencies = [
  "cxx",
  "cxx-build",

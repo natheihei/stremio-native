@@ -84,10 +84,10 @@ i-slint-core = { path = "vendor/i-slint-core" }
 
 # LOCAL ONLY: link against a shared system libtorrent (Arch's
 # libtorrent-rasterbar). The pinned wrapper calls lt::aux::from_hex, which a
-# shared libtorrent does not export; ../stream-server (branch
-# fix/shared-libtorrent-from-hex, based on f585ab6) parses via operator>>.
+# shared libtorrent does not export; my stream-server fork (b312338, on top of
+# f585ab6) parses via operator>> instead.
 [patch."https://github.com/stremio-native/stream-server.git"]
-libtorrent-sys = { path = "../stream-server/bindings/libtorrent-sys" }
+libtorrent-sys = { git = "https://github.com/natheihei/stream-server.git", rev = "b312338d77e8964c7ef8d040ada565d3f7de28f1" }
 
 [profile.release]
 opt-level = 3
