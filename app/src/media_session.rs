@@ -210,9 +210,14 @@ impl Worker {
             return;
         };
 
+        // Use a per-process MPRIS name (`<name>.instance<pid>`, as the MPRIS
+        // spec allows and Chromium does). With a fixed name, a second process
+        // gets NameTaken, which souvlaki's zbus backend unwraps on its service
+        // thread — under panic=abort that kills the whole app at startup.
+        let dbus_name = format!("{DBUS_NAME}.instance{}", std::process::id());
         let config = PlatformConfig {
             display_name: DISPLAY_NAME,
-            dbus_name: DBUS_NAME,
+            dbus_name: &dbus_name,
             hwnd: hwnd.map(|hwnd| hwnd as *mut std::ffi::c_void),
         };
 
