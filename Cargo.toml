@@ -82,6 +82,13 @@ i-slint-renderer-skia = { path = "vendor/i-slint-renderer-skia" }
 # See vendor/i-slint-core/PATCHES.md.
 i-slint-core = { path = "vendor/i-slint-core" }
 
+# LOCAL ONLY: link against a shared system libtorrent (Arch's
+# libtorrent-rasterbar). The pinned wrapper calls lt::aux::from_hex, which a
+# shared libtorrent does not export; ../stream-server (branch
+# fix/shared-libtorrent-from-hex, based on f585ab6) parses via operator>>.
+[patch."https://github.com/stremio-native/stream-server.git"]
+libtorrent-sys = { path = "../stream-server/bindings/libtorrent-sys" }
+
 [profile.release]
 opt-level = 3
 # ThinLTO instead of `true` (fat). Fat LTO merges the whole program into one
